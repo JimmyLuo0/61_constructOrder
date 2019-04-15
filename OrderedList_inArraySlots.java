@@ -20,12 +20,17 @@ public class OrderedList_inArraySlots
         this();  // improve, for optional extra education
 
         // test champIndex, for incremental development
+		for(int index = 0; index < unordered.size(); index++){
         int nextLargerAt = champIndex( unordered);
         System.out.println( 
             "smallest element is at index " + nextLargerAt 
           + " and has the value " + unordered.get( nextLargerAt));
+		  
+		  
+			list_iAS.add(unordered.get(nextLargerAt));
+			unordered.set(champIndex(unordered), null);
+		}
     }
-
 
     /** 
       helper function for constructor
@@ -34,7 +39,17 @@ public class OrderedList_inArraySlots
               using the classic reigning champ algorithm
      */
      private int champIndex( ArrayList<Integer> challengers) {
-        return challengers.size() - 1;  // replace this line
+		 int champIndex = 0;
+		 int index = 0;
+		 int champ = 0;
+		 for(Integer els: challengers){
+			 if (els < champ){
+				 champIndex = index; 
+				 champ = els;
+			 }
+			 index++;
+		 }
+			 return champIndex;
      }
 
 
